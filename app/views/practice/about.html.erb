@@ -1,0 +1,20 @@
+<style>
+	#color_me_in {
+		background-color: <%= @color %>;
+		color: white;
+		width: 250px;
+		height: 250px;
+	}
+</style>
+
+<div id="color_me_in">
+	<%= @color.upcase %> BOX ACTIVATED!
+</div>
+
+<p>
+	<%= form_tag index_path do %>
+		<%= text_field_tag :name, nil, placeholder: "What's Your Name" %> 
+		<%= submit_tag "Back to Index" %>
+	<% end %>
+</p>
+
