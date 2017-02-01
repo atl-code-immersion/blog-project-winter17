@@ -1,37 +1,43 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @post.title %>
-</p>
+<div class="row">
+	<div class="col-md-8 col-md-offset-2">
+		<div class="well">
+			<h2>
+			  <%= @post.title %>
+			</h2>
 
-<p>
-  <strong>Author:</strong>
-  <%= @post.author %>
-</p>
+			<p>
+			  by <%= @post.user.username %>
+			</p>
 
-<p>
-  <strong>Blog entry:</strong>
-  <%= @post.blog_entry %>
-</p>
+			<p>
+				posted on <%= local_time(@post.created_at, "%m/%d/%Y at %l:%M%P") %>
+			</p>
 
-<p>
-	<%= link_to 'Edit', edit_post_path(@post) %>
-</p>
+			<p>
+			  <%= @post.blog_entry %>
+			</p>
 
-<div id="comments">
+			<p>
+				<%= link_to 'Edit', edit_post_path(@post), class: "btn btn-danger" %>
+			</p>
+		</div>
 
-	<%= render 'comments/form', comment: @comment %>
+		<div id="comments" class="well">
+			<h3>Comments</h3>
 
-	<% @post.comments.each do |comment| %>
-		<p>
-			<%= comment.author %> said...<br />
-			<%= comment.comment_entry %>
-		</p>
-	<% end %>
+			<p>
+				<%= render 'comments/form', comment: @comment %>
+			</p>
 
+			<% @post.comments.each do |comment| %>
+				<p>
+					<strong><%= comment.user.username %> said...</strong><br />
+					<%= comment.comment_entry %>
+				</p>
+			<% end %>
+
+		</div>
+	</div>
 </div>
-
-<p>
-	<%= link_to 'Back', posts_path %>
-</p>
