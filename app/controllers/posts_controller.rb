@@ -4,13 +4,20 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all
+    @posts = Post.all.page(params[:page])
+  end
+
+  def user_posts
+    @user = User.find(params[:id])
+
+    # @posts = Post.where(user_id: params[:id])
   end
 
   # GET /posts/1
   # GET /posts/1.json
   def show
     @comment = Comment.new
+    @comments = @post.comments.page(params[:page])
   end
 
   # GET /posts/new

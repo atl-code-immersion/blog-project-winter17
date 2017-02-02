@@ -16,12 +16,14 @@
 			</p>
 
 			<p>
-			  <%= @post.blog_entry %>
+			  <%= @post.blog_entry.html_safe %>
 			</p>
 
-			<p>
-				<%= link_to 'Edit', edit_post_path(@post), class: "btn btn-danger" %>
-			</p>
+			<% if current_user.id == @post.user_id %>
+				<p>
+					<%= link_to 'Edit', edit_post_path(@post), class: "btn btn-danger" %>
+				</p>
+			<% end %>
 		</div>
 
 		<div id="comments" class="well">
