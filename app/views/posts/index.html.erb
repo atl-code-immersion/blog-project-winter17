@@ -5,7 +5,7 @@
     <div class="col-md-8 col-md-offset-2">
       <div class="well">
         <h3><%= post.title %></h3>
-        <p>by <em><%= link_to post.user.username, user_posts_path(id: post.user_id) %></em></p>
+        <p>by <em><%= link_to post.user.username, user_posts_path(name: post.user.username) %></em></p>
         <p><em>posted on <%= local_time(post.created_at, "%m/%d/%Y at %l:%M%P") %></em></p>
         <p>
           <%= post.blog_entry[0..100].html_safe %>... <%= link_to "[READ MORE]", post %>
@@ -22,7 +22,6 @@
 <% end %>
 
 <%= paginate @posts %>
-
 
 
 
